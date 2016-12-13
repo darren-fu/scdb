@@ -1,0 +1,12 @@
+server:
+  port: 7200
+spring:
+  application:
+    name: server
+  cloud:
+    config:
+      allow-override: true
+      uri: http://localhost:7000
+      backup:
+        enable: false
+        file: d:/server-backup.propert

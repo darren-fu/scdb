@@ -1,0 +1,18 @@
+
+server:
+  port: 7000
+  address: 127.0.0.1
+spring:
+  application:
+    name: CloudConfig
+  cloud:
+    config:
+      allow-override: true
+      server:
+        git:
+          uri: https://github.com/darren-fu/cloud-config
+          username: darren-fu
+          password: P@ssw0rd
+          search-paths: resources,resources/{application}
+
+

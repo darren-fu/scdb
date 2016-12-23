@@ -1,17 +1,21 @@
+spring:
+  application:
+    name: server
 df:
   open:
     swagger:
      #path: '/server/*'
 eureka:
   instance:
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+    preferIpAddress: true
     metadataMap:
       version: 2.0.0
       app: ${spring.application.name}
   client:
     service-url:
-      defaultZone: http://localhost:7100/eureka
+      defaultZone: http://localhost:7102/eureka,http://localhost:7101/eureka,http://localhost:7100/eureka
     healthcheck:
       enabled: false
 

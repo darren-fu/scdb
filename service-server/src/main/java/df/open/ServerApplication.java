@@ -1,8 +1,10 @@
 package df.open;
 
 import com.netflix.appinfo.EurekaInstanceConfig;
+import com.netflix.discovery.EurekaClient;
 import df.open.support.event.ApplicationRefresnListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -32,23 +34,23 @@ import java.util.Arrays;
 @EnableEurekaClient
 @EnableAutoConfiguration
 @RestController
-public class ServerApplication implements EmbeddedServletContainerCustomizer {
-
+public class ServerApplication {
+//implements EmbeddedServletContainerCustomizer
     @Autowired
     private EurekaInstanceConfig eurekaInstanceConfig;
 
     public static void main(String[] args) {
-//        SpringApplication.run(ServerApplication.class, new String[]{"--debug"});
+//        SpringApplication.run(ServerApplication.class, args);
         SpringApplicationBuilder appBuilder = new SpringApplicationBuilder();
         appBuilder.sources(ServerApplication.class);
 
-        appBuilder.run();
+        appBuilder.run(args);
     }
 
-    @Override
-    public void customize(ConfigurableEmbeddedServletContainer container) {
-//        container.setPort(7200);
-    }
+//    @Override
+//    public void customize(ConfigurableEmbeddedServletContainer container) {
+////        container.setPort(7200);
+//    }
 
 
     @RequestMapping("/test")
@@ -63,8 +65,27 @@ public class ServerApplication implements EmbeddedServletContainerCustomizer {
         System.out.println("common title: " + ApplicationRefresnListener.class.getPackage().getImplementationTitle());
 
         Package pack = Package.getPackage("df.open.server");
-        System.out.println(pack.getImplementationVersion());
+//        System.out.println(pack.getImplementationVersion());
         return "done";
+    }
+
+
+    @Autowired
+    private EurekaClient eurekaClient;
+
+    @RequestMapping("/shutdown")
+    public String shutdown() {
+
+        eurekaClient.shutdown();
+
+        return "shutdown";
+    }
+
+
+    @RequestMapping("/start")
+    public String start() {
+        return "start";
+
     }
 
 

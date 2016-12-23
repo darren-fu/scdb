@@ -1,8 +1,6 @@
-server:
-  port: 7200
-spring:
-  application:
-    name: server
+#server:
+#  port: 7200
+
   cloud:
     config:
       allow-override: true

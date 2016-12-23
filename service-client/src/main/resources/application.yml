@@ -5,8 +5,8 @@ spring:
     name: client
 eureka:
   instance:
-    lease-renewal-interval-in-seconds: 1
-    lease-expiration-duration-in-seconds: 3
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
   client:
     service-url:
       defaultZone: http://localhost:7100/eureka

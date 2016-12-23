@@ -12,12 +12,12 @@
         <module>register-eureka</module>
         <module>service-server</module>
         <module>service-client</module>
-        <module>gateway-zuul</module>
         <module>system-config</module>
         <module>service-bus</module>
         <module>service-common</module>
         <module>register-zookeeper</module>
         <module>register-eureka2</module>
+        <module>zuul</module>
     </modules>
     <name>scdb</name>
     <description>Spring-Cloud-Distributed-System</description>
